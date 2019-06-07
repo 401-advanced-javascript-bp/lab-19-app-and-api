@@ -1,0 +1,25 @@
+{
+  "name": "node-apps",
+  "version": "1.0.0",
+  "description": "",
+  "main": "promises.test.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "dependencies": {
+    "@nmq/q": "^1.0.3",
+    "jest": "^24.8.0",
+    "nodemon": "^1.19.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node app.js",
+    "lint": "eslint **/*.js",
+    "test": "jest --verbose --coverage",
+    "test-watch": "jest --watchAll --verbose --coverage",
+    "jsdoc": "jsdoc -c ./docs/config/jsdoc.config.json"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

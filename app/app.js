@@ -1,23 +1,18 @@
 'use strict';
 const socketIOClient = require('socket.io-client');
+const Q = require('@nmq/q/client');
 const constants = require('../utils/constants');
 const events = require('../utils/events');
 //this is where transform.js is connected to server.js
 const appSocket = socketIOClient.connect(constants.SERVER_URL);
-const util = require('util');]
+const util = require('util');
 
-const fs = require('fs');
+const fs = require('fs'); //delete?
 
-// const alterFile = (file) => {
-//   fs.readFile( file, (err, data) => {
-//     if(err) { throw err; }
-//     let text = data.toString().toUpperCase();
-//     fs.writeFile( file, Buffer.from(text), (err, data) => {
-//       if(err) { throw err; }
-//       console.log(`${file} saved`);
-//     });
-//   });
-// };
+const filesQ = new Q('filesQ');
+
+const dbQ = new Q('databaseQ'); //db Queue
+
 const handleRead = (fileName) => {
   // console.log('handleRead');
   const read = util.promisify(fs.readFile);
@@ -43,3 +38,7 @@ const handleRead = (fileName) => {
 
 let file = process.argv.slice(2).shift();
 handleRead(file);
+
+filesQ.publish('filesQ', 'save', {});
+filesQ.publish('filesQ', 'error', {});
+

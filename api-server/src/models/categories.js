@@ -1,5 +1,7 @@
 'use strict';
 
+const Q = require('../app.js');
+
 const categoriesSchema = require('./categories-schema.js'); //new code, rename, check path
 //the requirement for all the fields (properties)
 //comes in with get, put, post, delete
@@ -15,6 +17,7 @@ class Categories {
     let queryObject = _id ? {_id} : {};
     //find == get
     console.log('This is get path');
+    Q.publish('databaseQueue','read', 'a read event happened');
     return categoriesSchema.find(queryObject);
   }
   
@@ -38,6 +41,7 @@ class Categories {
   }
 
   delete(_id) {
+    
   }
 
 }

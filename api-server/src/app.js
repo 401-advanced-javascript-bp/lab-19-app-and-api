@@ -4,6 +4,7 @@
 const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
+const Q = require('@nmq/q/client');
 
 // Esoteric Resources
 const errorHandler = require( './middleware/error.js');
@@ -134,5 +135,9 @@ function deleteProducts(request,response,next) {
 
 module.exports = {
   server: app,
-  start: (port) => app.listen(port, () => console.log(`Server up on port ${port}`) ),
+  start: (port) => {
+    app.listen(port, () => console.log(`Server up on port ${port}`));
+    Q.publish('databaseQueue', 'alive', {message: 'Im alive'});
+  },
+  Q:Q,
 };

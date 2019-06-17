@@ -8,12 +8,15 @@
   },
   "dependencies": {
     "@nmq/q": "^1.0.3",
+    "dotenv": "^8.0.0",
     "jest": "^24.8.0",
-    "nodemon": "^1.19.1"
+    "mongoose": "^5.6.0",
+    "nodemon": "^1.19.1",
+    "socket.io": "^2.2.0"
   },
   "devDependencies": {},
   "scripts": {
-    "start": "node app.js",
+    "start": "node index.js",
     "lint": "eslint **/*.js",
     "test": "jest --verbose --coverage",
     "test-watch": "jest --watchAll --verbose --coverage",

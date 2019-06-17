@@ -60,9 +60,19 @@ function getCategories(request,response,next) {
 
 function getCategory(request,response,next) {
   // expects an array with the one matching record from the model
-  console.log(request);
-  categories.get(request.params.id)
-    .then( result => response.status(200).json(result[0]) )
+  let id = [request.params.id]; //this is a string
+  console.log('*****This is request.params.id', id);
+  console.log('*************This is a MESSAGE IN THE GETCATEGORY FUNCTION');
+  categories.get(id)
+    // // .then( result => response.status(200).json(result[0]) )
+    // .then( result => response.status(200).json(result) )
+    .then( data => {
+      const output = {
+        // count: data.length,
+        results: data,
+      };
+      response.status(200).json(output);
+    })
     .catch( next );
 }
 
